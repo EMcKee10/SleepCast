@@ -5,6 +5,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.util.Objects;
 
 public class SleepCast extends JavaPlugin
 {
@@ -17,9 +18,6 @@ public class SleepCast extends JavaPlugin
   @Override
   public void onDisable()
   {
-  getServer().getPluginManager().registerEvents(new SleepListener(this), this);
-  this.getCommand("changemessage").setExecutor(new SleepExecutor(this));
-  this.getCommand("default").setExecutor(new SleepExecutor(this));
   }
   
   @Override
@@ -29,14 +27,17 @@ public class SleepCast extends JavaPlugin
   {
     saveResource("message.yml", false);
   }
-  
+    getServer().getPluginManager().registerEvents(new SleepListener(this), this);
+    Objects.requireNonNull(this.getCommand("changemessage")).setExecutor(new SleepExecutor(this));
+    Objects.requireNonNull(this.getCommand("default")).setExecutor(new SleepExecutor(this));
   }
-  
-  public FileConfiguration getMessagesConfig()
+
+  FileConfiguration getMessagesConfig()
   {
     return messageConfig;
   }
-  public File getMessagesFile()
+
+  File getMessagesFile()
   {
     return messageFile;
   }

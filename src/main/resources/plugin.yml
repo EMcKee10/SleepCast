@@ -1,6 +1,6 @@
 name: SleepCast
 main: io.github.EMcKee10.SleepCast.SleepCast
-version: 0.1.2
+version: 0.2.3
 description: Plugin to change getting in bed features.
 author: TheITx
 commands:

@@ -11,8 +11,8 @@ import java.io.IOException;
 public class SleepExecutor implements CommandExecutor
 {
   private final SleepCast sleepCast;
-  
-  public SleepExecutor(SleepCast sleepCast)
+
+  SleepExecutor(SleepCast sleepCast)
   {
     this.sleepCast = sleepCast;
   }
@@ -24,8 +24,8 @@ public class SleepExecutor implements CommandExecutor
     {
       Player player = (Player)sender;
     }
-    
-    if(command.equals("changemessage")) 
+
+    if (command.getName().equalsIgnoreCase("changemessage"))
     {
       if (args.length == 0) {
         sender.sendMessage(ChatColor.RED + "Incorrect command usage, try /join <message>.");
@@ -41,19 +41,20 @@ public class SleepExecutor implements CommandExecutor
         {
           sleepCast.getMessagesConfig().save(sleepCast.getMessagesFile());
           sender.sendMessage(ChatColor.GREEN + "The Message was successfully set to " + ChatColor.YELLOW + message);
+          return true;
         } catch(IOException e) {
           sender.sendMessage(ChatColor.RED + "An error has occurred while trying to set the message!");
         }
         
       }
-    }
-    else if(command.equals("default"))
+    } else if (command.getName().equalsIgnoreCase("default"))
     {
       sleepCast.getMessagesConfig().set("Messages.Custom", "");
       try
       {
         sleepCast.getMessagesConfig().save(sleepCast.getMessagesFile());
         sender.sendMessage(ChatColor.GREEN + "The Message was successfully set to the default message");
+        return true;
       } catch(IOException e) {
         sender.sendMessage(ChatColor.RED + "An error has occurred while trying to set the message!");
       }
