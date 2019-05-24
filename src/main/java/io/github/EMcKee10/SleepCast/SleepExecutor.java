@@ -40,7 +40,8 @@ public class SleepExecutor implements CommandExecutor
         try
         {
           sleepCast.getMessagesConfig().save(sleepCast.getMessagesFile());
-          sender.sendMessage(ChatColor.GREEN + "The Message was successfully set to " + ChatColor.YELLOW + message);
+          message = ChatColor.translateAlternateColorCodes('&', message);
+          sender.sendMessage(ChatColor.GREEN + "The Message was successfully set to " + message);
           return true;
         } catch(IOException e) {
           sender.sendMessage(ChatColor.RED + "An error has occurred while trying to set the message!");
@@ -50,10 +51,13 @@ public class SleepExecutor implements CommandExecutor
     } else if (command.getName().equalsIgnoreCase("default"))
     {
       sleepCast.getMessagesConfig().set("Messages.Custom", "");
+      String message = sleepCast.getMessagesConfig().getString("Messages.Default");
+      message = ChatColor.translateAlternateColorCodes('&', message);
       try
       {
         sleepCast.getMessagesConfig().save(sleepCast.getMessagesFile());
         sender.sendMessage(ChatColor.GREEN + "The Message was successfully set to the default message");
+        sender.sendMessage(ChatColor.GREEN + "Default Message: " + message);
         return true;
       } catch(IOException e) {
         sender.sendMessage(ChatColor.RED + "An error has occurred while trying to set the message!");
