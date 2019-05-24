@@ -10,9 +10,9 @@ import java.io.IOException;
 
 public class SleepExecutor implements CommandExecutor
 {
-  private final SleepCast sleepCast;
+  public final SleepCast sleepCast;
 
-  SleepExecutor(SleepCast sleepCast)
+  public SleepExecutor(SleepCast sleepCast)
   {
     this.sleepCast = sleepCast;
   }

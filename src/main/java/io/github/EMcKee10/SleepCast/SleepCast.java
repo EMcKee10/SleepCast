@@ -9,11 +9,9 @@ import java.util.Objects;
 
 public class SleepCast extends JavaPlugin
 {
-  
-  private File messageFile = new File(getDataFolder(), "messages.yml");
-  private FileConfiguration messageConfig = YamlConfiguration.loadConfiguration(messageFile);
-  
-  
+
+  public File messageFile = new File(getDataFolder(), "messages.yml");
+  public FileConfiguration messageConfig = YamlConfiguration.loadConfiguration(messageFile);
   
   @Override
   public void onDisable()
@@ -32,12 +30,12 @@ public class SleepCast extends JavaPlugin
     Objects.requireNonNull(this.getCommand("default")).setExecutor(new SleepExecutor(this));
   }
 
-  FileConfiguration getMessagesConfig()
+  public FileConfiguration getMessagesConfig()
   {
     return messageConfig;
   }
 
-  File getMessagesFile()
+  public File getMessagesFile()
   {
     return messageFile;
   }

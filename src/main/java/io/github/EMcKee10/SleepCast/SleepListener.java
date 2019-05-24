@@ -9,20 +9,21 @@ import org.bukkit.event.player.PlayerBedEnterEvent;
 
 public class SleepListener implements Listener
 {
-  
-  private SleepCast sleepPlugin;
-  
-  SleepListener(SleepCast sleepPlugin)
+
+  public SleepCast sleepPlugin;
+
+  public SleepListener(SleepCast sleepPlugin)
   {
     this.sleepPlugin = sleepPlugin;
   }
   
   @EventHandler
-  public void onPlyerBedEnterEvent(PlayerBedEnterEvent event)
+  public void onPlayerBedEnterEvent(PlayerBedEnterEvent event)
   {
     Player player = event.getPlayer();
     
     String defaultMessage = sleepPlugin.getMessagesConfig().getString("Messages.Default");
+    System.out.println(defaultMessage);
     if(defaultMessage.contains("[playername]"))
     {
       attachPlayername(player, defaultMessage);
