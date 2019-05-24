@@ -20,38 +20,42 @@ public class SleepListener implements Listener
   @EventHandler
   public void onPlayerBedEnterEvent(PlayerBedEnterEvent event)
   {
-    Player player = event.getPlayer();
-    
-    String defaultMessage = sleepPlugin.getMessagesConfig().getString("Messages.Default");
-    System.out.println(defaultMessage);
-    if(defaultMessage.contains("[playername]"))
+    if (event.getBedEnterResult() == PlayerBedEnterEvent.BedEnterResult.OK)
     {
-      attachPlayername(player, defaultMessage);
+      Player player = event.getPlayer();
+
+      String defaultMessage = sleepPlugin.getMessagesConfig().getString("Messages.Default");
+      if (defaultMessage.contains("[playername]"))
+      {
+        defaultMessage = attachPlayerName(player, defaultMessage);
+      }
+
+      String custommessage = sleepPlugin.getMessagesConfig().getString("Messages.Custom");
+
+      if (custommessage.contains("[playername]"))
+      {
+        custommessage = attachPlayerName(player, custommessage);
+      }
+
+      defaultMessage = ChatColor.translateAlternateColorCodes('&', defaultMessage);
+      custommessage = ChatColor.translateAlternateColorCodes('&', custommessage);
+
+      String message;
+      if (custommessage.equals(""))
+        message = defaultMessage;
+      else
+        message = custommessage;
+
+      for (Player p : Bukkit.getOnlinePlayers())
+        p.sendMessage(message);
     }
-    
-    String custommessage = sleepPlugin.getMessagesConfig().getString("Messages.Custom");
-  
-    if(custommessage.contains("[playername]"))
-    {
-      attachPlayername(player,custommessage);
-    }
-    
-    defaultMessage = ChatColor.translateAlternateColorCodes('&', defaultMessage);
-    custommessage = ChatColor.translateAlternateColorCodes('&', custommessage);
-    
-    if(custommessage.equals(""))
-    {
-      Bukkit.broadcastMessage(defaultMessage);
-    }
-    else
-      Bukkit.broadcastMessage(custommessage);
   }
-  
-  private String attachPlayername(Player player, String message)
+
+  private String attachPlayerName(Player player, String message)
   {
     do
     {
-      message = message.replace("[playername]",player.getName());
+      message = message.replace("[playername]", player.getName());
     } while(message.contains("[playername]"));
     
     return message;
