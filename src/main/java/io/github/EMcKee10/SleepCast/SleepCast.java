@@ -1,18 +1,19 @@
 package io.github.EMcKee10.SleepCast;
 
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Objects;
 
 public class SleepCast extends JavaPlugin
 {
+  private File messageFile;
+  private FileConfiguration messageConfig;
 
-  public File messageFile = new File(getDataFolder(), "messages.yml");
-  public FileConfiguration messageConfig = YamlConfiguration.loadConfiguration(messageFile);
-  
   @Override
   public void onDisable()
   {
@@ -21,13 +22,33 @@ public class SleepCast extends JavaPlugin
   @Override
   public void onEnable()
   {
-  if(!messageFile.exists())
-  {
-    saveResource("message.yml", false);
-  }
+    createCustomConfig();
+
     getServer().getPluginManager().registerEvents(new SleepListener(this), this);
     Objects.requireNonNull(this.getCommand("changemessage")).setExecutor(new SleepExecutor(this));
     Objects.requireNonNull(this.getCommand("default")).setExecutor(new SleepExecutor(this));
+  }
+
+  private void createCustomConfig()
+  {
+
+    messageFile = new File(this.getDataFolder(), "message.yml");
+
+    if (!messageFile.exists())
+    {
+      messageFile.getParentFile().mkdirs();
+      saveResource("message.yml", false);
+    }
+
+    messageConfig = new YamlConfiguration();
+    try
+    {
+      messageConfig.load(messageFile);
+    } catch (IOException | InvalidConfigurationException e)
+    {
+      System.out.println("There was a problem loading your yml file");
+      e.printStackTrace();
+    }
   }
 
   public FileConfiguration getMessagesConfig()
