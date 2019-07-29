@@ -23,11 +23,11 @@ _Example:_ &1[playername] is in bed now! will make the message appear blue
 ---
 
  ## -Permission-
-permission: SleepCast.ChangeMessage<br />
-description: Change message a player sees when going to bed.<br />
+permission: SleepCast.ChangeMessage
+description: Change message a player sees when going to bed.
 
-permission: SleepCast.Default<br />   
-description: Change message to default §d[playername] is sleeping in a bed<br />
+permission: SleepCast.Default  
+description: Change message to default §d[playername] is sleeping in a bed
 
 ---
 ## -Commands
