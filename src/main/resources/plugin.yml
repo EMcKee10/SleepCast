@@ -15,10 +15,3 @@ commands:
     permission: SleepCast.Default
     permission-message: You do not have the permission to use this command.
     usage: "Usage: /<command>"
-permissions:
-  SleepCast.ChangeMessage:
-    description: Allows the person to change the in bed message
-    default: op
-  SleepCast.Default:
-    description: Allows the person to change the in bed message to default §d[playername] is sleeping in a bed
-    default: op
