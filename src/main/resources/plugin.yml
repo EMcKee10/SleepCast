@@ -1,17 +1,5 @@
 name: SleepCast
-main: io.github.EMcKee10.SleepCast.SleepCast
-version: 1.0.0
+main: io.github.EMcKee10.SleepCast.SCMain
+version: ${project.version}
 description: Plugin to change getting in bed features.
 author: TheITx
-commands:
-  changemessage:
-    description: Change message a player sees when going to bed. add [playername] to add their name to the message
-    aliases: [cmsg, changem]
-    permission: SleepCast.ChangeMessage
-    permission-message: You do not have the permission to use this command.
-    usage: "Usage: /<command> [message you want to show when a person gets in bed]"
-  default:
-    description: Change message to default §d[playername] is sleeping in a bed
-    permission: SleepCast.Default
-    permission-message: You do not have the permission to use this command.
-    usage: "Usage: /<command>"
