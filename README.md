@@ -1,5 +1,5 @@
 # SleepCast
-## Latest Release: v1.0.0
+## Latest Release: v1.1.2
 
 **_SleepCast_** sends a default or custom message to all players on the server that a person has entered bed and is sleeping. Useful for notifying others that they too should go to bed.
 
